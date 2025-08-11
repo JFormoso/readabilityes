@@ -23,7 +23,6 @@ y **medir la legibilidad** de textos en español. Incluye:
   - **Szigriszt–Pazos** (`szigriszt_pazos()`).
   - **INFLESZ** (`inflesz()`, devuelve puntaje + categoría).
   - **Gutiérrez de Polini** (`gutierrez_de_polini()`).
-  - Opcionalmente, **Flesch** y **Flesch–Kincaid** aplicados al texto.
 
 ### Instalación
 
@@ -94,7 +93,6 @@ gutierrez_de_polini(txt)
   - **Szigriszt–Pazos** (`szigriszt_pazos()`).
   - **INFLESZ** (`inflesz()`, returns score + category).
   - **Gutiérrez de Polini** (`gutierrez_de_polini()`).
-  - Optionally, **Flesch** and **Flesch–Kincaid** applied to the text.
 
 ### Installation
 

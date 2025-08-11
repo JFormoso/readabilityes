@@ -22,19 +22,6 @@ test_that("gutierrez_de_polini calcula según la fórmula con conteos simples", 
   expect_equal(obt, esperado, tolerance = 1e-10)
 })
 
-test_that("flesch_es y flesch_kincaid_grade_es respetan sus fórmulas (aplicadas)", {
-  txt <- "a."  # W=1, S=1, Sy=1
-  fre_esp <- 206.835 - 1.015 * (1/1) - 84.6 * (1/1)     # 121.22
-  fkgl_esp <- 0.39 * (1/1) + 11.8 * (1/1) - 15.59       # -3.4
-
-  expect_equal(flesch_es(txt), fre_esp, tolerance = 1e-10)
-  expect_equal(flesch_kincaid_grade_es(txt), fkgl_esp, tolerance = 1e-10)
-
-  # Vectoriza y NA
-  v <- c("a.", NA_character_)
-  expect_equal(is.na(flesch_es(v)[2]), TRUE)
-  expect_equal(is.na(flesch_kincaid_grade_es(v)[2]), TRUE)
-})
 
 test_that("inflesz_category asigna categorías correctas (umbrales incluidos)", {
   # Umbrales:
@@ -87,11 +74,7 @@ test_that("inputs sin palabras/oraciones no rompen: se usan pmax(...) y se evita
   empty <- ""
   sp <- szigriszt_pazos(empty)
   gp <- gutierrez_de_polini(empty)
-  fr <- flesch_es(empty)
-  fk <- flesch_kincaid_grade_es(empty)
 
   expect_true(is.finite(sp))
   expect_true(is.finite(gp))
-  expect_true(is.finite(fr))
-  expect_true(is.finite(fk))
 })

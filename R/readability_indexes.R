@@ -6,8 +6,6 @@
 #' - \code{inflesz()}: devuelve el puntaje Szigriszt-Pazos y su categoría según la
 #'   escala INFLESZ (ver \code{inflesz_category()}).
 #' - \code{gutierrez_de_polini()}: Fórmula de Gutiérrez de Polini.
-#' - \code{flesch_es()} (opcional): Flesch Reading Ease aplicado a conteos del texto.
-#' - \code{flesch_kincaid_grade_es()} (opcional): Flesch–Kincaid Grade Level aplicado al texto.
 #'
 #' Todas las funciones aceptan texto sin procesar y delegan los conteos en
 #' \code{\link{count_words}}, \code{\link{count_sentences}} y
@@ -16,9 +14,6 @@
 #' @section Notas importantes:
 #' - INFLESZ es una escala de interpretación del índice de Szigriszt-Pazos,
 #'   con 5 niveles de dificultad. No es una fórmula distinta.
-#' - Flesch y Flesch–Kincaid son fórmulas desarrolladas para inglés.
-#'   Aquí se ofrecen solo como referencia aplicada a un texto en español; su validez
-#'   psicométrica en español no está garantizada.
 #'
 #' @references
 #' - Szigriszt-Pazos: P = 206.835 - 62.3 * (Sy / W) - (W / S).
@@ -28,8 +23,6 @@
 #' - INFLESZ (categorías): Difícil (P < 40), Algo difícil (40–55),
 #'   Normal (55–65), Fácil (65–80), Muy fácil (P > 80).
 #' - Gutiérrez de Polini: G = 95.2 - 9.7 * (Sy / W) - 0.35 * (W / S).
-#' - Flesch (inglés): FRE = 206.835 - 1.015 * (W / S) - 84.6 * (Sy / W).
-#' - Flesch–Kincaid (inglés): FKGL = 0.39 * (W / S) + 11.8 * (Sy / W) - 15.59.
 #'
 #' @name readability_indexes
 NULL
@@ -150,51 +143,3 @@ gutierrez_de_polini <- function(text, ...) {
   out
 }
 
-# --- Flesch (opcional, aplicado) --------------------------------------------
-
-#' Flesch Reading Ease (aplicado al texto)
-#'
-#' Calcula el puntaje Flesch Reading Ease original (inglés) sobre los conteos
-#' del texto: \deqn{FRE = 206.835 - 1.015\cdot (W/S) - 84.6\cdot (Sy/W)}.
-#' \strong{Advertencia:} esta fórmula fue desarrollada para inglés; su validez en
-#' español no está garantizada.
-#'
-#' @param text Vector de caracteres con el/los texto(s) a analizar.
-#' @param ... Parámetros que se pasan a las funciones de conteo/tokenización.
-#'
-#' @return Un vector numérico con el puntaje Flesch Reading Ease.
-#' @examples
-#' flesch_es("Ejemplo de texto para estimar Flesch (no validado para ES).")
-#' @export
-flesch_es <- function(text, ...) {
-  counts <- .readability_counts(text, na_action = "propagate", ...)
-  W <- counts$W; S <- counts$S; Sy <- counts$Sy
-
-  out <- 206.835 - 1.015 * (W / pmax(S, 1)) - 84.6 * (Sy / pmax(W, 1))
-  out[is.na(W) | is.na(S) | is.na(Sy)] <- NA_real_
-  out
-}
-
-#' Flesch–Kincaid Grade Level (aplicado al texto)
-#'
-#' Calcula el grado escolar estimado según Flesch–Kincaid (inglés) sobre los
-#' conteos del texto: \deqn{FKGL = 0.39\cdot (W/S) + 11.8\cdot (Sy/W) - 15.59}.
-#' \strong{Advertencia:} desarrollado para inglés; su validez en español no está
-#' garantizada.
-#'
-#' @param text Vector de caracteres con el/los texto(s) a analizar.
-#' @param ... Parámetros que se pasan a las funciones de conteo/tokenización.
-#'
-#' @return Un vector numérico con el grado estimado (escala de EE. UU.).
-#' @examples
-#' flesch_kincaid_grade_es("Ejemplo de texto para FKGL (no validado para ES).")
-#' @export
-
-flesch_kincaid_grade_es <- function(text, ...) {
-  counts <- .readability_counts(text, na_action = "propagate", ...)
-  W <- counts$W; S <- counts$S; Sy <- counts$Sy
-
-  out <- 0.39 * (W / pmax(S, 1)) + 11.8 * (Sy / pmax(W, 1)) - 15.59
-  out[is.na(W) | is.na(S) | is.na(Sy)] <- NA_real_
-  out
-}

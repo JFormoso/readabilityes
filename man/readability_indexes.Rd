@@ -11,8 +11,6 @@ legibilidad usados en español:
 \item \code{inflesz()}: devuelve el puntaje Szigriszt-Pazos y su categoría según la
 escala INFLESZ (ver \code{inflesz_category()}).
 \item \code{gutierrez_de_polini()}: Fórmula de Gutiérrez de Polini.
-\item \code{flesch_es()} (opcional): Flesch Reading Ease aplicado a conteos del texto.
-\item \code{flesch_kincaid_grade_es()} (opcional): Flesch–Kincaid Grade Level aplicado al texto.
 }
 }
 \details{
@@ -25,9 +23,6 @@ Todas las funciones aceptan texto sin procesar y delegan los conteos en
 \itemize{
 \item INFLESZ es una escala de interpretación del índice de Szigriszt-Pazos,
 con 5 niveles de dificultad. No es una fórmula distinta.
-\item Flesch y Flesch–Kincaid son fórmulas desarrolladas para inglés.
-Aquí se ofrecen solo como referencia aplicada a un texto en español; su validez
-psicométrica en español no está garantizada.
 }
 }
 
@@ -40,7 +35,5 @@ en spanishreadability.com.
 \item INFLESZ (categorías): Difícil (P < 40), Algo difícil (40–55),
 Normal (55–65), Fácil (65–80), Muy fácil (P > 80).
 \item Gutiérrez de Polini: G = 95.2 - 9.7 * (Sy / W) - 0.35 * (W / S).
-\item Flesch (inglés): FRE = 206.835 - 1.015 * (W / S) - 84.6 * (Sy / W).
-\item Flesch–Kincaid (inglés): FKGL = 0.39 * (W / S) + 11.8 * (Sy / W) - 15.59.
 }
 }
