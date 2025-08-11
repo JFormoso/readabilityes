@@ -1,13 +1,14 @@
 Package: readabilityes
-Title:  Provides functions to calculate readability metrics for Spanish
+Title: Readability index calculation for Spanish texts
+Version: 0.0.0.9000
+Authors@R: 
+    person("Jesica", "Formoso", , "jesica.formoso@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0003-3062-4036"))
+Description: Provides functions to calculate readability metrics for Spanish
   texts, including sentence, word, and syllable counts, syllabification, and
   common readability indexes such as Fernández-Huerta, INFLESZ, and
   Szigriszt-Pazos. Includes text cleaning, tokenization, and utilities to
   handle accented characters and Spanish-specific orthographic rules.
-Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

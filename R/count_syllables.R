@@ -49,7 +49,7 @@ count_syllables <- function(text,
     stop("`text` debe ser un vector de caracteres.", call. = FALSE)
   }
   if (!is.function(syllable_fun)) {
-    stop("`syllable_fun` debe ser una función que cuente sílabas de una palabra.", call. = FALSE)
+    stop("`syllable_fun` debe ser una funci\u00f3n que cuente s\u00edlabas de una palabra.", call. = FALSE)
   }
   if (!is.list(syll_args)) {
     stop("`syll_args` debe ser una lista de argumentos adicionales para `syllable_fun`.", call. = FALSE)

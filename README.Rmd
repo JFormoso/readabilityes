@@ -1,0 +1,126 @@
+---
+output: github_document
+editor_options:
+  chunk_output_type: inline
+---
+
+<!-- README generado con usethis::use_readme_rmd() y adaptado -->
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+```{r load-readabilityes, include=FALSE}
+# Cargar el paquete desde el árbol fuente si no está instalado
+if (!requireNamespace("readabilityes", quietly = TRUE)) {
+  pkgload::load_all(export_all = FALSE, helpers = FALSE, attach_testthat = FALSE)
+}
+suppressPackageStartupMessages(try(library(readabilityes), silent = TRUE))
+```
+
+# readabilityes
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+## 🇪🇸 Introducción (Español)
+
+**readabilityes** ofrece herramientas para **tokenizar**, **segmentar** y **medir la legibilidad** de textos en español. Incluye:
+
+- Segmentación de **oraciones** respetando abreviaturas (p. ej., *Sr.*, *Dra.*), iniciales (*J. R. R.*), elipsis y decimales.
+- Tokenización de **palabras** con control de minúsculas, tildes, puntuación, guiones, números y símbolos/emoji.
+- Conteos básicos: **palabras**, **oraciones**, **sílabas** (aprox. ES).
+- Métricas promedio por palabra (**sílabas/letras/caracteres**).
+- **Índices de legibilidad** usados en español:
+  - **Szigriszt–Pazos** (`szigriszt_pazos()`).
+  - **INFLESZ** (`inflesz()`, devuelve puntaje + categoría).
+  - **Gutiérrez de Polini** (`gutierrez_de_polini()`).
+  - Opcionalmente, **Flesch** y **Flesch–Kincaid** aplicados al texto.
+
+### Instalación
+
+Versión de desarrollo desde GitHub:
+
+```r
+# install.packages("devtools")
+devtools::install_github("JFormoso/readabilityes")
+```
+
+### Ejemplo rápido
+
+```{r es-ejemplo}
+txt <- c(
+  "Hola. ¿Cómo estás? ¡Todo bien!",
+  "La legibilidad facilita la comprensión del texto por parte de las personas lectoras."
+)
+
+# Oraciones y palabras
+segment_sentences(txt)
+count_sentences(txt, drop_empty = TRUE)
+tokenize_words(txt)
+
+# Sílabas y promedios
+count_syllables(txt)
+avg_syllables_per_word(txt)
+
+# Índices de legibilidad
+szigriszt_pazos(txt)
+inflesz(txt)                 
+gutierrez_de_polini(txt)
+
+
+```
+
+---
+
+## 🇬🇧 Introduction (English)
+
+**readabilityes** provides tools to **tokenize**, **segment**, and **assess readability** for Spanish-language texts. It includes:
+
+- **Sentence** segmentation that respects abbreviations (e.g., *Sr.*, *Dra.*), initials (*J. R. R.*), ellipses, and decimals.
+- **Word** tokenization with controls for lowercasing, accents, punctuation, hyphens, numbers, and symbols/emoji.
+- Basic counts: **words**, **sentences**, **syllables** (approx. ES).
+- Per-word averages (**syllables/letters/characters**).
+- **Readability indices** commonly used in Spanish:
+  - **Szigriszt–Pazos** (`szigriszt_pazos()`).
+  - **INFLESZ** (`inflesz()`, returns score + category).
+  - **Gutiérrez de Polini** (`gutierrez_de_polini()`).
+  - Optionally, **Flesch** and **Flesch–Kincaid** applied to the text.
+
+### Installation
+
+Install the development version from GitHub:
+
+```r
+# install.packages("devtools")
+devtools::install_github("JFormoso/readabilityes")
+```
+
+### Quick example
+
+```{r en-example}
+txt <- c(
+  "Hola. ¿Cómo estás? ¡Todo bien!",
+  "La legibilidad facilita la comprensión del texto por parte de las personas lectoras."
+)
+
+# Sentences and words
+segment_sentences(txt)
+count_sentences(txt, drop_empty = TRUE)
+tokenize_words(txt)
+
+# Syllables and averages
+count_syllables(txt)
+avg_syllables_per_word(txt)
+
+# Readability indices
+szigriszt_pazos(txt)
+inflesz(txt)                  
+gutierrez_de_polini(txt)
+
+```

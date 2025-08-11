@@ -108,24 +108,36 @@ test_that("combinaciones típicas: min_len conceptual (no existe), pero se puede
 test_that("consistencia básica con clean_word/tokenize_clean si existen", {
   skip_if_not(exists("clean_word") && exists("tokenize_clean"))
 
-  # Para palabras sueltas, comparamos razonablemente según flags
   words <- c("Hola!", "  NIÑA  ", "maïz", "pingüino", "r2d2")
   for (w in words) {
-    tk_default <- tokenize_words(w, flatten = TRUE) # por default quita puntuación
-    cw         <- clean_word(w)
+    # Alineamos políticas razonables con clean_word:
+    toks <- tokenize_words(
+      w,
+      strip_symbols = TRUE,  # suele limpiar símbolos como hace clean_word
+      strip_punct   = TRUE,
+      keep_hyphens  = TRUE,
+      flatten       = TRUE
+    )
+
+    cw <- clean_word(w)
+    # Normalizamos cada token con clean_word y filtramos vacíos/NA
+    tk_norm <- vapply(toks, clean_word, character(1))
+    tk_norm <- tolower(tk_norm[!is.na(tk_norm) & nzchar(tk_norm)])
 
     if (!is.na(cw) && nzchar(cw)) {
-      # La concatenación de tokens debería contener la versión minúscula de cw
-      expect_true(grepl(tolower(cw), paste0(tk_default, collapse = "")))
+      # La versión limpia de la palabra debe aparecer entre los tokens limpiados
+      expect_true(tolower(cw) %in% tk_norm)
     } else {
-      expect_length(tk_default, 0)
+      # Si clean_word deja vacío/NA, entonces ningún token limpio debería quedar
+      expect_length(tk_norm, 0L)
     }
 
-    # Con strip_punct = FALSE, 'Hola!' se mantiene tal cual
+    # Verificación adicional: si NO removemos puntuación, el signo se conserva
     if (w == "Hola!") {
       tk_nostrip <- tokenize_words(w, strip_punct = FALSE, flatten = TRUE)
       expect_true("hola!" %in% tolower(tk_nostrip))
     }
   }
 })
+
 

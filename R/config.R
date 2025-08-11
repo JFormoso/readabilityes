@@ -58,7 +58,7 @@
     logical(1)
   )
   if (any(bad)) {
-    stop("`clusters_lr` contiene letras fuera del alfabeto válido.", call. = FALSE)
+    stop("`clusters_lr` contiene letras fuera del alfabeto v\u00e1lido.", call. = FALSE)
   }
 
   # Prohibir vocales (fuertes, débiles y tildadas)
