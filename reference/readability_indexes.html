@@ -5,8 +5,6 @@ szigriszt_pazos(): Índice de Perspicuidad de Szigriszt-Pazos.
 inflesz(): devuelve el puntaje Szigriszt-Pazos y su categoría según la
 escala INFLESZ (ver inflesz_category()).
 gutierrez_de_polini(): Fórmula de Gutiérrez de Polini.
-flesch_es() (opcional): Flesch Reading Ease aplicado a conteos del texto.
-flesch_kincaid_grade_es() (opcional): Flesch–Kincaid Grade Level aplicado al texto.
 
 "><meta property="og:description" content="Este archivo implementa funciones para calcular distintos índices de
 legibilidad usados en español:
@@ -14,8 +12,6 @@ szigriszt_pazos(): Índice de Perspicuidad de Szigriszt-Pazos.
 inflesz(): devuelve el puntaje Szigriszt-Pazos y su categoría según la
 escala INFLESZ (ver inflesz_category()).
 gutierrez_de_polini(): Fórmula de Gutiérrez de Polini.
-flesch_es() (opcional): Flesch Reading Ease aplicado a conteos del texto.
-flesch_kincaid_grade_es() (opcional): Flesch–Kincaid Grade Level aplicado al texto.
 
 "></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -57,8 +53,6 @@ legibilidad usados en español:</p><ul><li><p><code><a href="szigriszt_pazos.htm
 <li><p><code><a href="inflesz.html">inflesz()</a></code>: devuelve el puntaje Szigriszt-Pazos y su categoría según la
 escala INFLESZ (ver <code><a href="inflesz_category.html">inflesz_category()</a></code>).</p></li>
 <li><p><code><a href="gutierrez_de_polini.html">gutierrez_de_polini()</a></code>: Fórmula de Gutiérrez de Polini.</p></li>
-<li><p><code><a href="flesch_es.html">flesch_es()</a></code> (opcional): Flesch Reading Ease aplicado a conteos del texto.</p></li>
-<li><p><code><a href="flesch_kincaid_grade_es.html">flesch_kincaid_grade_es()</a></code> (opcional): Flesch–Kincaid Grade Level aplicado al texto.</p></li>
 </ul></div>
 
 
@@ -74,9 +68,6 @@ escala INFLESZ (ver <code><a href="inflesz_category.html">inflesz_category()</a>
 
 <ul><li><p>INFLESZ es una escala de interpretación del índice de Szigriszt-Pazos,
 con 5 niveles de dificultad. No es una fórmula distinta.</p></li>
-<li><p>Flesch y Flesch–Kincaid son fórmulas desarrolladas para inglés.
-Aquí se ofrecen solo como referencia aplicada a un texto en español; su validez
-psicométrica en español no está garantizada.</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -88,8 +79,6 @@ en spanishreadability.com.</p></li>
 <li><p>INFLESZ (categorías): Difícil (P &lt; 40), Algo difícil (40–55),
 Normal (55–65), Fácil (65–80), Muy fácil (P &gt; 80).</p></li>
 <li><p>Gutiérrez de Polini: G = 95.2 - 9.7 * (Sy / W) - 0.35 * (W / S).</p></li>
-<li><p>Flesch (inglés): FRE = 206.835 - 1.015 * (W / S) - 84.6 * (Sy / W).</p></li>
-<li><p>Flesch–Kincaid (inglés): FKGL = 0.39 * (W / S) + 11.8 * (Sy / W) - 15.59.</p></li>
 </ul></div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

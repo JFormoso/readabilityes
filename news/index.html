@@ -33,10 +33,55 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.1.0" id="readabilityes-010">readabilityes 0.1.0<a class="anchor" aria-label="anchor" href="#readabilityes-010"></a></h2>
-<ul><li>Initial CRAN submission.</li>
+<h2 class="pkg-version" data-toc-text="0.1.0" id="readabilityes-010-2025-08-11">readabilityes 0.1.0 (2025-08-11)<a class="anchor" aria-label="anchor" href="#readabilityes-010-2025-08-11"></a></h2>
+<div class="section level3">
+<h3 id="whats-new-0-1-0">What’s new<a class="anchor" aria-label="anchor" href="#whats-new-0-1-0"></a></h3>
+<ul><li>
+<p><strong>Sentence segmentation</strong></p>
+<ul><li>
+<code><a href="../reference/segment_sentences.html">segment_sentences()</a></code>: protects abbreviations (e.g., <em>Dr.</em>, <em>etc.</em>), initials (<em>J. R. R.</em>), decimals, and ellipses; supports <code>extra_abbr</code>, <code>keep_delim</code>, <code>normalize_spacing</code>.</li>
+<li>
+<code><a href="../reference/count_sentences.html">count_sentences()</a></code>: counts sentences per element, with <code>na_as_zero</code> and <code>drop_empty</code>.</li>
+</ul></li>
+<li>
+<p><strong>Tokenization and counts</strong></p>
+<ul><li>
+<code><a href="../reference/tokenize_words.html">tokenize_words()</a></code>: options <code>lowercase</code>, <code>keep_accents</code>, <code>strip_punct</code>, <code>keep_hyphens</code>, <code>remove_numbers</code>, <strong><code>strip_symbols</code></strong>, <strong><code>flatten</code></strong>.</li>
+<li>
+<code><a href="../reference/count_words.html">count_words()</a></code>: token count per element (defensive flag normalization with <code><a href="https://rdrr.io/r/base/Logic.html" class="external-link">isTRUE()</a></code>).</li>
+</ul></li>
+<li>
+<p><strong>Syllabification (ES)</strong></p>
+<ul><li>
+<code><a href="../reference/syll_split.html">syll_split()</a></code>, <code><a href="../reference/syll_count.html">syll_count()</a></code>, <code><a href="../reference/syll_hyphenate.html">syll_hyphenate()</a></code>: deterministic core with diphthongs/triphthongs and C+l/r clusters; <strong>optional cache</strong> via <code><a href="../reference/syll-cache.html">syll_cache_info()</a></code> / <code><a href="../reference/syll-cache.html">syll_cache_clear()</a></code>.</li>
+</ul></li>
+<li>
+<p><strong>Average metrics</strong></p>
+<ul><li>
+<code><a href="../reference/avg_syllables_per_word.html">avg_syllables_per_word()</a></code>, <code><a href="../reference/letters_per_word.html">letters_per_word()</a></code>, <code><a href="../reference/chars_per_word.html">chars_per_word()</a></code>.</li>
+</ul></li>
+<li>
+<p><strong>Readability indexes</strong></p>
+<ul><li>
+<code><a href="../reference/szigriszt_pazos.html">szigriszt_pazos()</a></code>, <code><a href="../reference/inflesz.html">inflesz()</a></code> + <code><a href="../reference/inflesz_category.html">inflesz_category()</a></code>, <code><a href="../reference/gutierrez_de_polini.html">gutierrez_de_polini()</a></code>.</li>
+</ul></li>
 </ul></div>
-  </main></div>
+<div class="section level3">
+<h3 id="changes-and-fixes-0-1-0">Changes and fixes<a class="anchor" aria-label="anchor" href="#changes-and-fixes-0-1-0"></a></h3>
+<ul><li>
+<strong>Segmentation regex</strong>: replaced variable-length lookbehind with a PCRE-compatible pattern to avoid <code>lookbehind assertion is not fixed length</code>.</li>
+<li>
+<code><a href="../reference/count_words.html">count_words()</a></code> and derived functions: defensive coercion of logical flags (<code><a href="https://rdrr.io/r/base/Logic.html" class="external-link">isTRUE()</a></code>).</li>
+<li>Documentation updated: new <code>strip_symbols</code> and <code>flatten</code> arguments in <code><a href="../reference/tokenize_words.html">tokenize_words()</a></code>.</li>
+<li>Expanded testthat suite and README examples in ES/EN.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="compatibility-0-1-0">Compatibility<a class="anchor" aria-label="anchor" href="#compatibility-0-1-0"></a></h3>
+<ul><li>No known breaking changes in this initial release.</li>
+</ul></div>
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
