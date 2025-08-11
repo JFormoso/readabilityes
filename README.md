@@ -5,6 +5,7 @@
 
 <!-- badges: start -->
 
+[![R-CMD-check](https://github.com/JFormoso/readabilityes/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/JFormoso/readabilityes/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 ## 🇪🇸 Introducción (Español)
