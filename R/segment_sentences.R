@@ -58,25 +58,27 @@ segment_sentences <- function(text,
     base_abbr <- unique(c(base_abbr, extra_abbr))
   }
 
-  # Tokens de protección (caracteres poco probables en texto normal)
+  # Tokens de protección
   DOT_TKN   <- "\u2414"  # ␔ para puntos protegidos
   ELL_TKN   <- "\u2416"  # ␖ para elipsis
-  QMRK_TKN  <- "\u2418"  # ␘ (no siempre necesario, reservado)
+  QMRK_TKN  <- "\u2418"  # ␘ (reservado)
 
   protect_abbrev <- function(x) {
-    # Proteger abreviaturas: (\\bABBR)\\.
-    # Construimos patrón para todas las abreviaturas, permitiendo variantes con acento y con/ sin escape.
+    # Alternancia de abreviaturas (sin punto final)
     abbr_pat <- paste0("(?:", paste0(base_abbr, collapse = "|"), ")")
-    # Reemplazar el punto final de la abreviatura por token
-    x <- gsub(paste0("(?i)(?<=\\b", abbr_pat, ")\\."), DOT_TKN, x, perl = TRUE)
 
-    # Proteger iniciales tipo "J. R. R." -> reemplazar puntos tras letras sueltas
+    # FIX: sin lookbehind variable — usamos captura + lookbehind de 1 char (no letra)
+    # Unicode-aware: (*UCP), case-insensitive: (?i)
+    pat <- paste0("(*UCP)(?i)(?<!\\p{L})(", abbr_pat, ")\\.")
+    x <- gsub(pat, paste0("\\1", DOT_TKN), x, perl = TRUE)
+
+    # Proteger iniciales tipo "J. R. R." (lookbehind de longitud fija = 1)
     x <- gsub("(?<=\\b[[:alpha:]])\\.", DOT_TKN, x, perl = TRUE)
 
     # Proteger elipsis ...
     x <- gsub("\\.{3,}", ELL_TKN, x, perl = TRUE)
 
-    # Proteger separadores decimales (tanto . como ,) entre dígitos
+    # Proteger separadores decimales . entre dígitos (lookaround fijo)
     x <- gsub("(?<=\\d)\\.(?=\\d)", DOT_TKN, x, perl = TRUE)
 
     x
@@ -88,19 +90,13 @@ segment_sentences <- function(text,
     x
   }
 
-  # División en oraciones:
-  #  - Cortar en . ! ? cuando NO son tokens protegidos
-  #  - Mantener el delimitador si keep_delim = TRUE
   split_sentences <- function(x) {
     if (is.na(x) || x == "") return(character(0))
 
     x_prot <- protect_abbrev(x)
 
-    # Patrón de fin de oración: punto, signo de cierre ! o ?, que no sea token
-    # Usamos corte por lookbehind en [.?!] seguido de espacio/fin de línea.
-    # Para conservar el delimitador, capturamos el signo.
+    # Insertar separador tras delimitador si keep_delim = TRUE
     if (keep_delim) {
-      # Insertamos separador especial después del delimitador
       x_marked <- gsub("([\\.\\!\\?])(\\s+|$)", "\\1\u241E", x_prot, perl = TRUE)
       parts <- strsplit(x_marked, "\u241E", fixed = TRUE)[[1]]
     } else {
@@ -110,7 +106,7 @@ segment_sentences <- function(text,
     # Restaurar tokens
     parts <- unprotect_all(parts)
 
-    # si no conservamos delimitador, quitarlos del final
+    # Si no conservamos delimitador, quitarlos del final
     if (!keep_delim) {
       parts <- sub("\\s*[\\.!\\?]+$", "", parts, perl = TRUE)
     }
@@ -121,13 +117,11 @@ segment_sentences <- function(text,
       parts <- trimws(parts)
     }
 
-    # Eliminar vacíos residuales
+    # Eliminar vacíos
     parts <- parts[nzchar(parts)]
-
     parts
   }
 
-  # Aplicar a cada elemento del vector de entrada
-  out <- lapply(text, split_sentences)
-  out
+  lapply(text, split_sentences)
 }
+

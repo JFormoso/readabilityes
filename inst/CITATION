@@ -1,0 +1,13 @@
+citHeader("Para citar este paquete:")
+
+pkg <- utils::packageDescription("readabilityes")
+year <- sub("-.*", "", pkg$Date %||% pkg$Packaged %||% format(Sys.Date(), "%Y"))
+
+bibentry(
+  bibtype = "Manual",
+  title   = sprintf("%s: %s", pkg$Package, pkg$Title),
+  author  = utils::as.person(pkg$`Authors@R`),
+  year    = year,
+  note    = sprintf("R package version %s", pkg$Version),
+  url     = "https://github.com/JFormoso/readabilityes"
+)
