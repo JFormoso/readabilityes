@@ -1,9 +1,14 @@
 Package: readabilityes
-Title: What the Package Does (One Line, Title Case)
+Title: Readability Index Calculation for Spanish and Catalan Texts
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+    person("First", "Last", , "first.last@example.com", role = c("aut", "cre", "cph"))
+Description: Provides functions to calculate readability metrics for Spanish
+    and Catalan texts, including word, sentence, and syllable counting,
+    syllabification, and text cleaning and tokenization adapted to the
+    orthographic rules of each language. Readability indexes (e.g.,
+    Szigriszt-Pazos and Gutierrez de Polini, currently available for
+    Spanish) are calculated through a unified interface.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
