@@ -10,7 +10,7 @@ test_that("[registro] .lang_get('es') devuelve una entrada completa y coherente"
   expect_type(entry, "list")
   expect_named(
     entry,
-    c("label", "valid_letters", "v_fuerte", "v_debil", "v_tilde", "clusters", "syllabify_fn"),
+    c("label", "valid_letters", "v_fuerte", "v_debil", "v_tilde", "clusters", "syllabify_fn", "sentence_abbr"),
     ignore.order = TRUE
   )
 
@@ -19,6 +19,7 @@ test_that("[registro] .lang_get('es') devuelve una entrada completa y coherente"
   expect_identical(entry$v_debil,       readabilityes:::.v_debil)
   expect_identical(entry$v_tilde,       readabilityes:::.v_tilde)
   expect_identical(entry$clusters,      readabilityes:::.clusters_lr)
+  expect_identical(entry$sentence_abbr, readabilityes:::.abbr_es)
   expect_true(is.function(entry$syllabify_fn))
 })
 
@@ -28,7 +29,7 @@ test_that("[registro] .lang_get('ca') devuelve una entrada completa y coherente"
   expect_type(entry, "list")
   expect_named(
     entry,
-    c("label", "valid_letters", "v_fuerte", "v_debil", "v_tilde", "clusters", "syllabify_fn"),
+    c("label", "valid_letters", "v_fuerte", "v_debil", "v_tilde", "clusters", "syllabify_fn", "sentence_abbr"),
     ignore.order = TRUE
   )
 
@@ -37,6 +38,7 @@ test_that("[registro] .lang_get('ca') devuelve una entrada completa y coherente"
   expect_identical(entry$v_debil,       readabilityes:::.v_debil_ca)
   expect_identical(entry$v_tilde,       readabilityes:::.v_tilde_ca)
   expect_identical(entry$clusters,      readabilityes:::.clusters_ca)
+  expect_identical(entry$sentence_abbr, readabilityes:::.abbr_ca)
   expect_true(is.function(entry$syllabify_fn))
 })
 

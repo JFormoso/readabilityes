@@ -7,6 +7,7 @@
 \alias{.v_debil}
 \alias{.v_tilde}
 \alias{.clusters_lr}
+\alias{.abbr_es}
 \alias{.valid_letters_ca}
 \alias{.v_fuerte_ca}
 \alias{.v_debil_ca}
@@ -18,6 +19,7 @@
 \alias{.rx_strong}
 \alias{.rx_weak}
 \alias{.syll_cache}
+\alias{.abbr_ca}
 \title{Internos para segmentación silábica}
 \usage{
 .valid_letters
@@ -29,6 +31,8 @@
 .v_tilde
 
 .clusters_lr
+
+.abbr_es
 
 .valid_letters_ca
 
@@ -51,6 +55,8 @@
 .rx_weak
 
 .syll_cache
+
+.abbr_ca
 }
 \description{
 Conjunto de reglas, constantes y expresiones regulares precompiladas

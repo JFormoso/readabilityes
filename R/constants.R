@@ -45,6 +45,28 @@ NULL
 #' @rdname syllabify-internals
 .clusters_lr <- c("bl", "br", "cl", "cr", "dr", "fl", "fr", "gl", "gr", "pl", "pr", "tr")
 
+# Abreviaturas en español (sin el punto final)
+#' @rdname syllabify-internals
+.abbr_es <- c(
+  # Tratamientos y títulos
+  "sr", "sra", "srta", "dr", "dra", "lic", "ing", "arq", "prof", "profa",
+  "fr", "sta", "sto", "excmo", "ilmo",
+  # Pronominales/respeto
+  "ud", "uds",
+  # Editoriales y académicas
+  "etc", "p", "pp", "cap", "caps", "fig", "figs", "pág", "págs",
+  "pag", "pags", "núm", "num", "º", "vol", "vols", "ed", "art", "adj", "adv", "cf",
+  # Días de la semana
+  "lun", "mié", "jue", "vie", "sáb", "dom",
+  # Meses
+  "ene", "feb", "jun", "jul", "ago", "sept", "oct", "nov", "dic",
+  # Varias
+  "av", "dto", "dpto", "ej", "aprox", "tel", "dir", "coord", "gral", "pl",
+  "máx", "mín",
+  # Latinas frecuentes (con el punto ya escapado; \\s? tolera "e. g." con espacio)
+  "e\\.\\s?g", "i\\.\\s?e", "vs"
+)
+
 
 # Catalán --------------------------
 
@@ -137,3 +159,41 @@ NULL
 # Caché para segmentación (creado en .onLoad)
 #' @rdname syllabify-internals
 .syll_cache <- NULL
+
+# Abreviaturas en catalán
+#' @rdname syllabify-internals
+.abbr_ca <- c(
+  "abr", "abrev", "ac", "acs", "ag", "ago", "am", "ant", "antol", "ap", "apmt",
+  "apnt", "apr", "aprox", "apt", "ar", "arq", "arquit", "art", "ass", "assign",
+  "assoc", "astr", "astrol", "astron", "atm", "aut", "autògr", "aux", "av",
+  "batx", "bda", "bibl", "bibliogr", "bl", "boib", "butll", "bxs", "cal",
+  "calef", "cant", "cap", "cast", "cat", "catedr", "catol", "cc", "cert", "cf",
+  "cia", "cif", "cint", "circul", "cl", "cm", "coaut", "col", "col·l",
+  "col·lab", "com", "comp", "compl", "compt", "cons", "constr", "cont",
+  "contr", "conv", "coord", "corp", "corr", "cp", "cpl", "cpt", "cró", "ct",
+  "ctra", "cènt", "dc", "ded", "dep", "dept", "derog", "desp", "dg", "dir",
+  "disp", "distr", "div", "dj", "dl", "dm", "dni", "do", "doc", "dogc", "dogv",
+  "dopc", "dp", "dr", "dra", "drec", "ds", "dt", "dta", "dte", "dupl", "dv",
+  "econ", "ed", "ene", "entl", "ep", "epd", "esc", "ese", "esp", "espf", "esq",
+  "etc", "eu", "eur", "ex", "exc", "exp", "exped", "ext", "fac", "fb", "fc",
+  "fca", "feb", "febr", "ff", "fig", "fl", "flux", "fonogr", "fot", "fr",
+  "fra", "fs", "fís", "gall", "gen", "geogr", "geom", "gov", "gral", "gw",
+  "ha", "hab", "hg", "hl", "hm", "hz", "ib", "il·lustr", "im", "imp", "imperf",
+  "impr", "impt", "inc", "incompl", "ind", "inf", "insp", "inst", "int", "ip",
+  "it", "jul", "jur", "jurispr", "kb", "keur", "kg", "km", "kv", "kva", "kw",
+  "kwh", "ll", "llic", "lo", "ltda", "mb", "mbps", "me", "mecan", "mecanogr",
+  "merc", "meur", "mg", "mhz", "mil·l", "min", "ml", "mm", "mn", "mons",
+  "mpta", "mpx", "mw", "mwh", "màx", "mín", "nb", "ne", "neg", "nne", "nno",
+  "nnw", "nom", "nov", "nre", "num", "nw", "núm", "oct", "om", "op", "p",
+  "paq", "parc", "part", "pb", "pd", "pda", "pg", "pk", "pl", "pleg", "pm",
+  "pn", "pobl", "pol", "poligr", "port", "pos", "pq", "pr", "pral", "prel",
+  "pres", "prev", "priv", "proc", "prof", "progr", "prol", "prov", "ps", "pt",
+  "pta", "ptes", "ptge", "publ", "pàg", "pça", "quadr", "quadrupl", "quint",
+  "rbla", "rda", "red", "ref", "reform", "reg", "reprod", "rev", "revis", "rh",
+  "rpm", "rps", "scoop", "secr", "seg", "sel", "serv", "sg", "sgt", "sgta",
+  "sign", "sit", "sl", "sn", "so", "sp", "sr", "sra", "sse", "sso", "ssw",
+  "st", "sta", "sup", "supl", "suplem", "supt", "sw", "símb", "tel", "telegr",
+  "tit", "tm", "tr", "trad", "trans", "transcr", "transf", "trav", "tripl",
+  "trv", "tt", "tv", "un", "univ", "urb", "veg", "venc", "vg", "vid", "vig",
+  "vo", "vocab", "vol", "vos", "vp", "vre", "vs", "wh", "àr", "àt", "íd",
+  "e\\.\\s?g", "i\\.\\s?e")

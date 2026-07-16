@@ -2,6 +2,7 @@
 
 export(clean_word)
 export(is_valid_word)
+export(segment_sentences)
 export(syll_cache_clear)
 export(syll_cache_info)
 export(syll_config)

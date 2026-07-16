@@ -27,7 +27,8 @@
       v_debil       = .v_debil,
       v_tilde       = .v_tilde,
       clusters      = .clusters_lr,
-      syllabify_fn  = .syllabify_word_es
+      syllabify_fn  = .syllabify_word_es,
+      sentence_abbr = .abbr_es        # ← nuevo
     ),
     ca = list(
       label         = "Catal\u00e0",
@@ -36,7 +37,8 @@
       v_debil       = .v_debil_ca,
       v_tilde       = .v_tilde_ca,
       clusters      = .clusters_ca,
-      syllabify_fn  = .syllabify_word_ca
+      syllabify_fn  = .syllabify_word_ca,
+      sentence_abbr = .abbr_ca        # ← nuevo
     )
   )
 }
