@@ -17,8 +17,8 @@ syll_set_options(...)
 syll_reset_options(which = "all")
 }
 \description{
-Consulta y modificación de opciones de silabificación, incluyendo el
-idioma global (\code{lang}).
+Consulta y modificación de opciones de silabificación para español y
+catalán, incluyendo el idioma global (\code{lang}).
 }
 \examples{
 syll_get_option("lang")        # "es"

@@ -17,4 +17,26 @@
 
   # -- Caché compartida --------------------------
   .syll_cache <<- new.env(parent = emptyenv())
+
+  # -- Registro central por idioma ---------
+  .lang_registry <<- list(
+    es = list(
+      label         = "Espa\u00f1ol",
+      valid_letters = .valid_letters,
+      v_fuerte      = .v_fuerte,
+      v_debil       = .v_debil,
+      v_tilde       = .v_tilde,
+      clusters      = .clusters_lr,
+      syllabify_fn  = .syllabify_word_es
+    ),
+    ca = list(
+      label         = "Catal\u00e0",
+      valid_letters = .valid_letters_ca,
+      v_fuerte      = .v_fuerte_ca,
+      v_debil       = .v_debil_ca,
+      v_tilde       = .v_tilde_ca,
+      clusters      = .clusters_ca,
+      syllabify_fn  = .syllabify_word_ca
+    )
+  )
 }
