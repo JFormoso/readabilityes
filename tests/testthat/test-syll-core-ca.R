@@ -105,3 +105,16 @@ test_that("[CA] Apóstrofe final: pronombre se fusiona con la última sílaba", 
   expect_equal(syll_ca("anar-se'n"), "a\u00b7nar\u00b7sen")
 })
 
+test_that("[CA] Token puramente numérico con guion no rompe syll_split (regresión: 1997-2001)", {
+  expect_equal(syll_split("1997-2001", lang = "ca"), NA_character_)
+  expect_equal(syll_split("-", lang = "ca"), NA_character_)
+  # Confirmar que no afectó el caso real de guion con palabras (agradar-me)
+  expect_equal(syll_split("agradar-me", lang = "ca"), c("a", "gra", "dar", "me"))
+})
+
+test_that("[CA] count_syllables no rompe con tokens numéricos mezclados en el texto", {
+  expect_equal(
+    count_syllables("Publicat entre 1997-2001 per l'autor.", lang = "ca"),
+    count_syllables("Publicat entre per l'autor.", lang = "ca")
+  )
+})

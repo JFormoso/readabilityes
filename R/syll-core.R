@@ -451,6 +451,7 @@
   if (grepl("-", word, fixed = TRUE)) {
     parts <- strsplit(word, "-", fixed = TRUE)[[1L]]
     parts <- parts[nzchar(parts)]
+    if (!length(parts)) return(NA_character_)
     return(unlist(lapply(parts, .syllabify_word_ca)))
   }
 
@@ -597,7 +598,7 @@ syll_split <- function(word, lang = syll_get_option("lang")) {
 
   out <- .syllabify_word(w, lang = lang)
 
-  if (isTRUE(syll_get_option("cache_enabled")) && !is.na(out[1L])) {
+  if (isTRUE(syll_get_option("cache_enabled")) && length(out) && !is.na(out[1L])) {
     .cache_set(cache_key, out)
   }
   out
