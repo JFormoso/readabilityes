@@ -93,10 +93,20 @@ readability_index <- function(text,
     vals <- c(vals, .mu_stats(text, lang = lang))
   }
 
+
+
+  empty_content <- !is.na(vals$W) & !is.na(vals$S) & !is.na(vals$Sy) &
+    (vals$W == 0L | vals$S == 0L | vals$Sy == 0L)
+
+
   # Calcular cada índice pedido
   scores <- lapply(chosen, function(idx) {
     entry <- registry[[idx]]
-    do.call(entry$fn, vals[entry$inputs])
+    val <- do.call(entry$fn, vals[entry$inputs])
+    if (any(entry$inputs %in% c("W", "S", "Sy", "C"))) {
+      val[empty_content] <- NA_real_
+    }
+    val
   })
   names(scores) <- chosen
 
@@ -113,7 +123,8 @@ readability_index <- function(text,
 
   if (intermediate) {
     out <- cbind(
-      data.frame(n_words = vals$W, n_sentences = vals$S, n_syllables = vals$Sy),
+      data.frame(n_words = vals$W, n_sentences = vals$S, n_syllables = vals$Sy,
+                 letters_per_word = vals$C),
       out
     )
   }

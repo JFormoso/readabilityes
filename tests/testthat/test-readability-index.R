@@ -109,3 +109,16 @@ test_that("[readability_index] texto de una sola palabra: mu da NA con warning, 
   expect_true(is.na(out$mu))
   expect_false(is.na(out$szigriszt_pazos))
 })
+
+test_that("[readability_index] texto vacío da NA en el índice, no un número sin sentido", {
+  out <- readability_index("", intermediate = TRUE)
+  expect_equal(out$n_words, 0L)
+  expect_true(is.na(out$szigriszt_pazos))
+  expect_true(is.na(out$gutierrez_de_polini))
+})
+
+test_that("[readability_index] intermediate=TRUE incluye letters_per_word", {
+  out <- readability_index("Este es un texto de prueba.", intermediate = TRUE)
+  expect_true("letters_per_word" %in% names(out))
+  expect_equal(out$letters_per_word, 3.5)
+})
